@@ -124,7 +124,7 @@
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSManagedObjectContext *context = [[GSCoreDataController instance] managedObjectContext];
+    NSManagedObjectContext *context = [GSCoreDataController managedObjectContext];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
