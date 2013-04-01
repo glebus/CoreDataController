@@ -10,12 +10,12 @@
 
 @implementation GSFileManager
 
-#pragma mark - Application's Documents directory
+#pragma mark - 
+#pragma mark Application's Documents directory
 
 // Returns the URL to the application's Documents directory.
-+ (NSURL *)documentsDirectory
-{
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
++ (NSURL *)documentsDirectory {
+    NSFileManager *fileManager = [NSFileManager new];
     NSArray *documentDirectoryURLs = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
     return [documentDirectoryURLs lastObject];
 }
