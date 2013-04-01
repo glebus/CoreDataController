@@ -21,8 +21,8 @@
 		9217BD32170A20EF00EED094 /* demoCoreDataController.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9217BD30170A20EF00EED094 /* demoCoreDataController.xcdatamodeld */; };
 		9217BD35170A20EF00EED094 /* GSMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217BD34170A20EF00EED094 /* GSMasterViewController.m */; };
 		9217BD38170A20EF00EED094 /* GSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217BD37170A20EF00EED094 /* GSDetailViewController.m */; };
-		9217BD43170A219100EED094 /* GSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217BD40170A219100EED094 /* GSCoreDataController.m */; };
-		9217BD44170A219100EED094 /* GSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217BD42170A219100EED094 /* GSFileManager.m */; };
+		9217BD51170A25B200EED094 /* GSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217BD4E170A25B200EED094 /* GSCoreDataController.m */; };
+		9217BD52170A25B200EED094 /* GSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217BD50170A25B200EED094 /* GSFileManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,10 +46,10 @@
 		9217BD34170A20EF00EED094 /* GSMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GSMasterViewController.m; sourceTree = "<group>"; };
 		9217BD36170A20EF00EED094 /* GSDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GSDetailViewController.h; sourceTree = "<group>"; };
 		9217BD37170A20EF00EED094 /* GSDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GSDetailViewController.m; sourceTree = "<group>"; };
-		9217BD3F170A219100EED094 /* GSCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCoreDataController.h; sourceTree = "<group>"; };
-		9217BD40170A219100EED094 /* GSCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCoreDataController.m; sourceTree = "<group>"; };
-		9217BD41170A219100EED094 /* GSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSFileManager.h; sourceTree = "<group>"; };
-		9217BD42170A219100EED094 /* GSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSFileManager.m; sourceTree = "<group>"; };
+		9217BD4D170A25B200EED094 /* GSCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCoreDataController.h; sourceTree = "<group>"; };
+		9217BD4E170A25B200EED094 /* GSCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCoreDataController.m; sourceTree = "<group>"; };
+		9217BD4F170A25B200EED094 /* GSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSFileManager.h; sourceTree = "<group>"; };
+		9217BD50170A25B200EED094 /* GSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSFileManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +98,7 @@
 		9217BD1B170A20EF00EED094 /* demoCoreDataController */ = {
 			isa = PBXGroup;
 			children = (
-				9217BD3E170A218100EED094 /* CoreDataController */,
+				9217BD4C170A25B200EED094 /* CoreDataController */,
 				9217BD24170A20EF00EED094 /* GSAppDelegate.h */,
 				9217BD25170A20EF00EED094 /* GSAppDelegate.m */,
 				9217BD2D170A20EF00EED094 /* MainStoryboard.storyboard */,
@@ -126,16 +126,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9217BD3E170A218100EED094 /* CoreDataController */ = {
+		9217BD4C170A25B200EED094 /* CoreDataController */ = {
 			isa = PBXGroup;
 			children = (
-				9217BD3F170A219100EED094 /* GSCoreDataController.h */,
-				9217BD40170A219100EED094 /* GSCoreDataController.m */,
-				9217BD41170A219100EED094 /* GSFileManager.h */,
-				9217BD42170A219100EED094 /* GSFileManager.m */,
+				9217BD4D170A25B200EED094 /* GSCoreDataController.h */,
+				9217BD4E170A25B200EED094 /* GSCoreDataController.m */,
+				9217BD4F170A25B200EED094 /* GSFileManager.h */,
+				9217BD50170A25B200EED094 /* GSFileManager.m */,
 			);
-			name = CoreDataController;
-			sourceTree = "<group>";
+			path = CoreDataController;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -209,8 +209,8 @@
 				9217BD32170A20EF00EED094 /* demoCoreDataController.xcdatamodeld in Sources */,
 				9217BD35170A20EF00EED094 /* GSMasterViewController.m in Sources */,
 				9217BD38170A20EF00EED094 /* GSDetailViewController.m in Sources */,
-				9217BD43170A219100EED094 /* GSCoreDataController.m in Sources */,
-				9217BD44170A219100EED094 /* GSFileManager.m in Sources */,
+				9217BD51170A25B200EED094 /* GSCoreDataController.m in Sources */,
+				9217BD52170A25B200EED094 /* GSFileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +333,7 @@
 				9217BD3D170A20EF00EED094 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
