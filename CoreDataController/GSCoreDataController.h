@@ -10,6 +10,8 @@
 
 @interface GSCoreDataController : NSObject
 
++ (void)configureWithDataModelName:(NSString *)dataModelName;
+
 + (NSManagedObjectContext *)managedObjectContext;
 + (NSManagedObjectModel *)managedObjectModel;
 + (NSPersistentStoreCoordinator *)persistentStoreCoordinator;

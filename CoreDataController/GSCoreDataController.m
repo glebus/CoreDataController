@@ -9,13 +9,12 @@
 #import "GSCoreDataController.h"
 #import "GSFileManager.h"
 
-#define resourceName @"url"
-#define baseFileName @"url"
-
 @interface GSCoreDataController()
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (strong, nonatomic) NSString *resourceName;
+@property (strong, nonatomic) NSString *baseFileName;
 @end
 
 @implementation GSCoreDataController {
@@ -27,19 +26,28 @@ static GSCoreDataController *instance = nil;
 #pragma mark - 
 #pragma mark Public methods
 
++ (void)configureWithDataModelName:(NSString *)dataModelName {
+    GSCoreDataController *coreDataController = [GSCoreDataController instance];
+    coreDataController.resourceName = dataModelName;
+    coreDataController.baseFileName = dataModelName;
+}
+
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
 + (NSManagedObjectContext *)managedObjectContext {
     GSCoreDataController *coreDataController = [GSCoreDataController instance];
+    
     if (coreDataController.managedObjectContext != nil) {
         return coreDataController.managedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    
     if (coordinator != nil) {
         coreDataController.managedObjectContext = [[NSManagedObjectContext alloc] init];
         [coreDataController.managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
+    
     return coreDataController.managedObjectContext;
 }
 
@@ -47,10 +55,16 @@ static GSCoreDataController *instance = nil;
 // If the model doesn't already exist, it is created from the application's model.
 + (NSManagedObjectModel *)managedObjectModel {
     GSCoreDataController *coreDataController = [GSCoreDataController instance];
+    
+    if (!coreDataController.resourceName) {
+        return nil;
+    }
+    
     if (coreDataController.managedObjectModel != nil) {
         return coreDataController.managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:resourceName withExtension:@"momd"];
+    
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:coreDataController.resourceName withExtension:@"momd"];
     coreDataController.managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return coreDataController.managedObjectModel;
 }
@@ -59,14 +73,21 @@ static GSCoreDataController *instance = nil;
 // If the coordinator doesn't already exist, it is created and the application's store added to it.
 + (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     GSCoreDataController *coreDataController = [GSCoreDataController instance];
+    
+    if (!coreDataController.baseFileName) {
+        return nil;
+    }
+    
     if (coreDataController.persistentStoreCoordinator != nil) {
         return coreDataController.persistentStoreCoordinator;
     }
-    NSString *baseFile = [NSString stringWithFormat:@"%@.sqlite", baseFileName];
+    
+    NSString *baseFile = [coreDataController.baseFileName stringByAppendingString:@".sqlite"];;
     NSURL *storeURL = [[GSFileManager documentsDirectory] URLByAppendingPathComponent:baseFile];
     
     NSError *error = nil;
     coreDataController.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    
     if (![coreDataController.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
