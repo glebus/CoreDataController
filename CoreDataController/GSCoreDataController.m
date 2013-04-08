@@ -9,8 +9,8 @@
 #import "GSCoreDataController.h"
 #import "GSFileManager.h"
 
-#define resourceName @"demoCoreDataController"
-#define baseFileName @"demoCoreDataController"
+#define resourceName @"url"
+#define baseFileName @"url"
 
 @interface GSCoreDataController()
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
