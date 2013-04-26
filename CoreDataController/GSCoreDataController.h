@@ -16,6 +16,8 @@
 + (NSManagedObjectModel *)managedObjectModel;
 + (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
 
++ (NSArray *)fetchEntitiesWithName:(NSString *)name;
++ (NSArray *)fetchEntitiesWithName:(NSString *)name predicate:(NSPredicate *)predicate;
 + (NSArray *)fetchEntitiesWithName:(NSString *)name sortByFiled:(NSString *)sortField ascending:(BOOL)ascending;
 + (NSManagedObject *)createEntityWithName:(NSString *)name;
 + (void)removeEntity:(NSManagedObject *)entity;

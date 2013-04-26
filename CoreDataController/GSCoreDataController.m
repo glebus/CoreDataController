@@ -24,7 +24,7 @@
 static GSCoreDataController *instance = nil;
 
 #pragma mark - 
-#pragma mark Public methods
+#pragma mark Public API
 
 + (void)configureWithDataModelName:(NSString *)dataModelName {
     GSCoreDataController *coreDataController = [GSCoreDataController instance];
@@ -96,13 +96,27 @@ static GSCoreDataController *instance = nil;
     return coreDataController.persistentStoreCoordinator;
 }
 
-+ (NSArray *)fetchEntitiesWithName:(NSString *)name sortByFiled:(NSString *)sortField ascending:(BOOL)ascending {
++ (NSArray *)fetchEntitiesWithName:(NSString *)name {
+    return [self fetchEntitiesWithName:name sortByFiled:nil ascending:YES];
+}
+
++ (NSArray *)fetchEntitiesWithName:(NSString *)name predicate:(NSPredicate *)predicate {
+    return [self fetchEntitiesWithName:name predicate:predicate sortByFiled:nil ascending:YES];
+}
+
++ (NSArray *)fetchEntitiesWithName:(NSString *)name sortByFiled:(NSString *)sortField ascending:(BOOL)ascending
+{
+    return [self fetchEntitiesWithName:name predicate:nil sortByFiled:sortField ascending:ascending];
+}
+
++ (NSArray *)fetchEntitiesWithName:(NSString *)name predicate:(NSPredicate *)predicate sortByFiled:(NSString *)sortField ascending:(BOOL)ascending
+{
     if (!name) {
         return nil;
     }
     
     NSFetchRequest *request = [NSFetchRequest new];
-    NSManagedObjectContext *context = [self managedObjectContext];
+    NSManagedObjectContext *context = [[GSCoreDataController instance] managedObjectContext];
     NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:context];
     [request setEntity:entity];
     
@@ -110,6 +124,10 @@ static GSCoreDataController *instance = nil;
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortField ascending:ascending];
         NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
         [request setSortDescriptors:sortDescriptors];
+    }
+    
+    if (predicate) {
+        [request setPredicate:predicate];
     }
     
     NSError *error = nil;
@@ -142,7 +160,7 @@ static GSCoreDataController *instance = nil;
 }
 
 #pragma mark - 
-#pragma mark Private methods
+#pragma mark Private API
 
 + (GSCoreDataController *)instance {
     @synchronized(self) {
